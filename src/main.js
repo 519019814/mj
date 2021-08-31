@@ -12,7 +12,7 @@ import '@/styles/index.scss'
 import App from './App'
 import store from './store'
 import router from './router'
-import { mockXHR } from '../mock'
+// import { mockXHR } from '../mock'
 import './icons'
 import './permission'
 import './utils/error-log'
@@ -28,9 +28,9 @@ Vue.use(Element, {
 })
 
 // 生产环境去除mockJS
-if (process.env.NODE_ENV === 'production') {
-  mockXHR()
-}
+// if (process.env.NODE_ENV === 'production') {
+//   mockXHR()
+// }
 
 VueAMap.initAMapApiLoader({
   key: '7c38d01a2af1ca67bb7099d50c5b30aa',

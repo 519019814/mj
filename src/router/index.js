@@ -125,7 +125,7 @@ export const asyncRoutes = [
             name: 'Place',
             activeMenu: '/wcmap',
             hidden: true,
-            meta: { title: '公厕详情', icon: 'edit', activeMenu: '/wcmap', noCache: true }
+            meta: { title: '公厕详情', icon: 'edit', activeMenu: '/wcmap' }
           }
         ]
       }

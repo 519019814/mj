@@ -69,6 +69,7 @@ export default {
       this.$store.commit('searchWc/set_markerLabel', item.id)
     },
     onBackHistory() {
+      this.$store.commit('searchWc/SET_SEARCHINPUT', '')
       this.$router.push({
         path: '/wcmap/page/searchHistory'
       })

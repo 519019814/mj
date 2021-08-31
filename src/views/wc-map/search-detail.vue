@@ -111,13 +111,19 @@ export default {
       })
     },
     onBackHistory() {
-      if (this.isBack) {
-        this.$router.go(-1)
-      } else {
-        this.$router.push({
-          path: '/wcmap/page/searchHistory'
-        })
-      }
+      this.$store.commit('searchWc/SET_SEARCHINPUT', this.wc.title)
+      // 待优化
+      this.$router.push({
+        path: '/wcmap/page/search'
+      })
+      // this.$router.go(-1)
+      // if (this.isBack) {
+      //   this.$router.go(-1)
+      // } else {
+      //   this.$router.push({
+      //     path: '/wcmap/page/searchHistory'
+      //   })
+      // }
     }
   }
 }

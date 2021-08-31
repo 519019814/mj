@@ -21,8 +21,8 @@ export default {
   data() {
     return {
       data1: [
-        { value: 320, name: '人数' },
-        { value: 2410, name: '坑位' },
+        { value: 2410, name: '人数' },
+        { value: 102, name: '坑位' },
         { value: 1439, name: '游客' },
         { value: 100, name: '区域' }
       ],
