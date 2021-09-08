@@ -17,7 +17,7 @@ module.exports = {
   /**
    * 如果需要部署在子路径下，参见: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: '/mj',
+  publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: process.env.VUE_APP_NODE_ENV === 'development',

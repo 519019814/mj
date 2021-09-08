@@ -3,49 +3,36 @@ import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
-// create an axios instance
+// axios实例
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  // withCredentials: true,
+  timeout: 5000 // 超时时间
 })
 
-// request interceptor
+// 请求拦截器
 service.interceptors.request.use(
   config => {
-    // do something before request is sent
-
+    // 获取token
     if (store.getters.token) {
-      // let each request carry token
-      // ['X-Token'] is a custom headers key
-      // please modify it according to the actual situation
       config.headers['authorization'] = getToken()
     }
     return config
   },
   error => {
-    // do something with request error
-    console.log(error) // for debug
+    // 错误捕获
+    console.error(error)
     return Promise.reject(error)
   }
 )
 
-// response interceptor
+// 响应拦截
 service.interceptors.response.use(
-  /**
-   * If you want to get http information such as headers or status
-   * Please return  response => response
-  */
-
-  /**
-   * Determine the request status by custom code
-   * Here is just an example
-   * You can also judge the status by HTTP Status Code
-   */
   response => {
     const res = response.data
+    // 将响应头加入到响应data中
     res.headers = response.headers
-    // if the custom code is not 20000, it is judged as an error.
+    // 后端正常代码 code = "0"
     res.code = Number(res.code)
     if (res.code !== 0) {
       Message({
@@ -54,8 +41,8 @@ service.interceptors.response.use(
         duration: 5 * 1000
       })
 
-      // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+      // token失效，登录过期，在其他地方登录，均清除本地token后跳转至登录页
+      if (res.code === 5001 || res.code === 5002 || res.code === 5004) {
         // to re-login
         MessageBox.confirm('您已注销，点击取消停留在此页面，或者重新登录', '确认退出？', {
           confirmButtonText: '重新登录',
@@ -73,7 +60,7 @@ service.interceptors.response.use(
     }
   },
   error => {
-    console.log('响应拦截器捕获到error: ', error.response)
+    console.error('响应拦截器捕获到error: ', error.response)
     Message({
       message: error.response.data.message || error.response.data.error || error.response.data,
       type: 'error',

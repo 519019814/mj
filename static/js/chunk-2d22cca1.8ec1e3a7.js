@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d22cca1"],{f573:function(e,t,n){"use strict";n.r(t);var a=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("people",{attrs:{type:"water"}})},c=[],l=n("c621"),o={name:"Water",components:{People:l["default"]}},p=o,r=n("cba8"),u=Object(r["a"])(p,a,c,!1,null,null,null);t["default"]=u.exports}}]);
